@@ -6,11 +6,32 @@
         particles   = [],
         properties  = {
             bgColor: 'rgba(39,37,34,1)',
-            particleColor: 'rgb(205,23,23)',
+            particleColors: [
+                'rgba(205,23,23,1)',
+                'rgba(217, 35, 205, 1)',
+                'rgba(111, 35, 217, 1)',
+                'rgba(35, 108, 217, 1)',
+                'rgba(35, 168, 217, 1)',
+                'rgba(35, 217, 217, 1)',
+                'rgba(35, 217, 111, 1)',
+                'rgba(35, 217, 62, 1)',
+                'rgba(147,217,35, 1)',
+                'rgba(148,217,36, 1)',
+                'rgba(189, 217, 35, 1)',
+                'rgba(205, 217, 35, 1)',
+                'rgba(217, 208, 35, 1)',
+                'rgba(217, 165, 35, 1)',
+                'rgba(217, 138, 35, 1)',
+                'rgba(217, 104, 35, 1)',
+                'rgba(217, 89, 35, 1)',
+                'rgba(217, 53, 35, 1)',
+                'rgba(217, 35, 35, 1)'
+            ],
             particleRadius: 3,
-            particleCount: 150,
+            particleCount: 100,
             particleMaxVelocity: 0.5,
-            maxLength: 150
+            maxLength: 150,
+            particleLife: 60
         }
 
     window.addEventListener('resize', function () {
@@ -22,8 +43,10 @@
         constructor() {
             this.x = Math.random()*w;
             this.y = Math.random()*h;
+            this.color = properties.particleColors[Math.floor(Math.random()*properties.particleColors.length)];
             this.velocityX = Math.random()*(properties.particleMaxVelocity*2)-properties.particleMaxVelocity;
             this.velocityY = Math.random()*(properties.particleMaxVelocity*2)-properties.particleMaxVelocity;
+            this.life = Math.floor(properties.particleLife*Math.random())*60;
         }
         position(){
             this.x + this.velocityX > w && this.velocityX > 0 || this.x + this.velocityX < 0 && this.velocityX < 0 ?this.velocityX*=-1:this.velocityX;
@@ -36,8 +59,19 @@
             ctx.beginPath();
             ctx.arc(this.x, this.y, properties.particleRadius, 0, Math.PI*2);
             ctx.closePath();
-            ctx.fillStyle = properties.particleColor;
+            ctx.fillStyle = this.color;
             ctx.fill();
+        }
+        reCalculateLife(){
+            if(this.life < 1){
+                this.x = Math.random()*w;
+                this.y = Math.random()*h;
+                this.color = properties.particleColors[Math.floor(Math.random()*properties.particleColors.length)];
+                this.velocityX = Math.random()*(properties.particleMaxVelocity*2)-properties.particleMaxVelocity;
+                this.velocityY = Math.random()*(properties.particleMaxVelocity*2)-properties.particleMaxVelocity;
+                this.life = Math.floor(properties.particleLife*Math.random())*60;
+            }
+            this.life--;
         }
     }
     function drawLines() {
@@ -52,7 +86,10 @@
                 if(length < properties.maxLength){
                     opacity = 1 - length/properties.maxLength;
                     ctx.lineWidth = '0,5';
-                    ctx.strokeStyle = `rgba(250,40,40,${opacity})`;
+                    let gradient = ctx.createLinearGradient(x1,y1,x2,y2);
+                    gradient.addColorStop(0, particles[i]['color'].replace(/1\)$/, `${opacity})`));
+                    gradient.addColorStop(1, particles[j]['color'].replace(/1\)$/, `${opacity})`));
+                    ctx.strokeStyle = gradient;
                     ctx.beginPath();
                     ctx.moveTo(x1,y1);
                     ctx.lineTo(x2,y2);
@@ -66,6 +103,7 @@
     function reDrawParticles (){
         for (let i in particles){
             particles[i].reDraw();
+            particles[i].reCalculateLife();
         }
     }
 
@@ -85,6 +123,7 @@
         for(let i = 0; i < properties.particleCount; i++){
             particles.push(new particle);
         }
+        console.log(particles)
         loop()
     }
 
