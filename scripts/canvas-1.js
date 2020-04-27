@@ -28,9 +28,9 @@
                 'rgba(217, 35, 35, 1)'
             ],
             particleRadius: 3,
-            particleCount: 100,
+            particleCount: innerWidth > 1000 ? 100 : innerWidth < 560 ? 35 : 65,
             particleMaxVelocity: 0.5,
-            maxLength: 150,
+            maxLength: innerWidth > 1000 ? 150 : innerWidth < 560 ? 100 : 55,
             particleLife: 60
         }
 

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My documents canvas</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <main class="docs">
+        <!-- getContext() -->
+        <div class="methood">
+            <h2 class="methood__name">
+                canvas.getContext(contextType, contextAttributes) - возвращает контекст рисования на холсте, или null,
+                если идентификатор контекста не определен.
+            </h2>
+            <ul class="methood__attr">
+                <li class="methood__attr-decription">contextType - строка содержащая идентификатор контекста рисования связанного с холстом</li>
+                <li class="methood__attr-value">"2d" - создает  объект CanvasRenderingContext2D, представляющий двумерный контекст</li>
+                <li class="methood__attr-value">
+                    "webgl" - создает объект WebGLRenderingContext, представляющтй трёхмерный контекст.
+                    Этот контекст доступен только в браузерах, которые реализуют WebGL первой версии (OpenGL ES 2.0).
+                </li>
+                <li class="methood__attr-value">
+                    "webgl2" - создает объект WebGL2RenderingContext, представляющтй трёхмерный контекст.
+                    Этот контекст доступен только в браузерах, которые реализуют WebGL второй версии (OpenGL ES 3.0).
+                </li>
+                <li class="methood__attr-value">
+                    "bitmaprenderer" - создает ImageBitmapRenderingContext, обеспечивающий только функции для замены
+                    содержимого холста с заданным ImageBitmap.
+                </li>
+                <li class="methood__attr-decription">contextAttributes - объект с настроками контекста</li>
+                <li class="methood__attr-note">2d атрибуты контекста:</li>
+                <li class="methood__attr-value">alpha - логическое значение, указывает есть ли у холста альфа канал</li>
+                <li class="methood__attr-note">Атрибуты контекста WebGL:</li>
+                <li class="methood__attr-value">alpha - Boolean, который указывает, содержит ли холст альфа-буфер</li>
+                <li class="methood__attr-value">depth - Boolean, который указывает, что буфер рисования имеет буфер глубины не менее 16 бит.</li>
+                <li class="methood__attr-value">stencil - Boolean, который указывает, что буфер рисования имеет буфер трафарета не менее 8 бит.</li>
+                <li class="methood__attr-value">antialias - Логическое значение, указывающее, выполнять ли сглаживание или нет.</li>
+                <li class="methood__attr-value">
+                    premultipliedAlpha - Boolean, который указывает, что компоновщик страниц будет предполагать,
+                    что буфер рисования содержит цвета с предварительно умноженной альфа.</li>
+                <li class="methood__attr-value">
+                    preserveDrawingBuffer - Если значение равно true, буферы не будут очищены и сохранят свои значения до тех пор,
+                    пока автор не очистит или не перезаписает их.
+                </li>
+                <li class="methood__attr-value">
+                    failIfMajorPerformanceCaveat - Boolean, который указывает, будет ли создан контекст, если производительность системы низкая.
+                </li>
+            </ul>
+            <ul class="method__return">
+                <li class="method__return-heading">Метод возвращает:</li>
+                <li class="methood__return">RenderingContext, который представляет собой</li>
+                <li class="method__return-value">CanvasRenderingContext2D для "2d"</li>
+                <li class="method__return-value">WebGLRenderingContext для "webgl" и "experimental-webgl"</li>
+                <li class="method__return-value">WebGL2RenderingContext для "webgl2" и "experimental-webgl2"</li>
+                <li class="method__return-value">ImageBitmapRenderingContext для "bitmaprenderer"</li>
+            </ul>
+        </div>
+    </main>
+</body>
+</html>
