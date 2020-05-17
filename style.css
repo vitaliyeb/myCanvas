@@ -54,6 +54,7 @@ main {
 .methood{
     box-sizing: border-box;
     padding: 7px;
+    margin: 10px 0;
     border-radius: 7px;
     background-color: #a1d7d0;
 }
